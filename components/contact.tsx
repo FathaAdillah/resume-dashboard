@@ -1,10 +1,10 @@
 import { Mail, GitlabIcon as GitHub, Phone, Linkedin } from 'lucide-react'
 
 const contactData = [
-  { icon: Mail, label: 'Email', value: 'johndoe@example.com', href: 'mailto:johndoe@example.com' },
-  { icon: GitHub, label: 'GitHub', value: 'github.com/johndoe', href: 'https://github.com/johndoe' },
-  { icon: Phone, label: 'WhatsApp', value: '+1234567890', href: 'https://wa.me/1234567890' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/johndoe', href: 'https://www.linkedin.com/in/johndoe' }
+  { icon: Mail, label: 'Email', value: 'fatha.adillah12@gmail.com', href: 'mailto:fatha.adillah12@gmail.com' },
+  { icon: GitHub, label: 'GitHub', value: 'github.com/FathaAdillah', href: 'https://github.com/FathaAdillah' },
+  { icon: Phone, label: 'WhatsApp', value: '+62895609674762', href: 'https://wa.me/0895609674762' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/fatha-adillah', href: 'https://www.linkedin.com/in/fatha-adillah' }
 ]
 
 export function Contact() {
