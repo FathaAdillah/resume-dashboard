@@ -7,7 +7,8 @@ import { Profile } from '../components/profile'
 import { Experience } from '../components/experience'
 import { Education } from '../components/education'
 import { Organization } from '../components/organization'
-import { Skills } from '../components/skills'
+import { HardSkills } from '../components/Hardskills'
+import { SoftSkills } from '@/components/Softskils'
 import { Certificates } from '../components/certificates'
 import { Expertise } from '../components/expertise'
 import { Projects } from '../components/projects'
@@ -34,7 +35,8 @@ export default function Home() {
             <Experience />
             <Education />
             <Organization />
-            <Skills />
+            <HardSkills />
+            <SoftSkills/>
             <Certificates />
             <Projects />
             <Contact />

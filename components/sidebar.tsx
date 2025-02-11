@@ -38,7 +38,13 @@ export function Sidebar() {
           <li>
             <a href="#skills" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
               <Code className="h-5 w-5" />
-              <span>Skills</span>
+              <span>Hard Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#HardSkills" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
+              <Code className="h-5 w-5" />
+              <span>Soft Skills</span>
             </a>
           </li>
           <li>
