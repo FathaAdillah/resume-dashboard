@@ -21,6 +21,21 @@ export function Experience() {
           </ul>
         </div>
         <div>
+          <h3 className="text-xl font-semibold text-gray-700">Freelance Software Developer</h3>
+          <p className="text-gray-600">2022 - Present</p>
+          <ul className="list-disc list-inside text-gray-600 mt-2">
+            <li>Developing and customizing HRIS solutions to optimize employee management and payroll processes.</li>
+            <li>Building CRM systems to enhance customer relationship tracking and business operations.</li>
+            <li>Creating company profile websites with modern, responsive designs to improve brand presence.</li>
+            <li>Implementing web-based applications using Laravel and React for scalability and maintainability.</li>
+          </ul>
+          <p className="text-green-600 underline mt-1">Key Achievements:</p>
+          <ul className="list-disc list-inside text-gray-600 mt-2">
+            <li>Successfully delivered multiple HRIS and CRM projects for SMEs, improving workflow efficiency.</li>
+            <li>Developed company profile websites that increased client engagement and online visibility.</li>
+          </ul>
+        </div>
+        <div>
           <h3 className="text-xl font-semibold text-gray-700">IT Support - PT. Pitik Digital Indonesia</h3>
           <p className="text-gray-600">2022 - 2023</p>
           <ul className="list-disc list-inside text-gray-600 mt-2">
@@ -51,6 +66,9 @@ export function Experience() {
             <li>Achieve project targets by completing the maintenance office of one district branch area within 1
             month</li>
           </ul>
+        </div>
+        <div>
+        
         </div>
       </div>
     </section>
