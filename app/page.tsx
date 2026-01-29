@@ -15,7 +15,7 @@ import { Projects } from '../components/projects'
 import { Contact } from '../components/contact'
 
 export default function Home() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false) // Default closed on mobile
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
@@ -23,10 +23,26 @@ export default function Home() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <div className={`${isSidebarOpen ? 'w-64' : 'w-0'} transition-all duration-300 ease-in-out overflow-hidden`}>
+      {/* Backdrop overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300"
+          onClick={toggleSidebar}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar - overlay on mobile, flex item on desktop */}
+      <div className={`
+        fixed lg:relative inset-y-0 left-0 z-50 w-64 lg:flex-shrink-0
+        transform transition-transform duration-300 ease-in-out lg:translate-x-0
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <Sidebar />
       </div>
-      <div className="flex-1 flex flex-col overflow-hidden">
+
+      {/* Main content - full width on mobile, flex-1 on desktop */}
+      <div className="flex flex-col flex-1 overflow-hidden">
         <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 pt-4">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +52,7 @@ export default function Home() {
             <Education />
             <Organization />
             <HardSkills />
-            <SoftSkills/>
+            <SoftSkills />
             <Certificates />
             <Projects />
             <Contact />

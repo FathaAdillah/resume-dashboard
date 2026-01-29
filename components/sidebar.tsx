@@ -2,71 +2,36 @@ import { Home, Briefcase, GraduationCap, Code, Zap, Contact2Icon, FolderTree, Sh
 
 export function Sidebar() {
   return (
-    <aside className="bg-blue-500 text-white h-full min-h-screen p-4 rounded-tr-2xl transition-all duration-300 ease-in-out">
-      <nav>
-        <ul className="space-y-2">
-          <li>
-            <a href="#profile" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Home className="h-5 w-5" />
-              <span>Profile</span>
-            </a>
-          </li>
-          <li>
-            <a href="#expertise" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Zap className="h-5 w-5" />
-              <span>Expertise</span>
-            </a>
-          </li>
-          <li>
-            <a href="#experience" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Briefcase className="h-5 w-5" />
-              <span>Experience</span>
-            </a>
-          </li>
-          <li>
-            <a href="#education" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <GraduationCap className="h-5 w-5" />
-              <span>Education</span>
-            </a>
-          </li>
-          <li>
-            <a href="#organization" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Users2 className="h-5 w-5" />
-              <span>Organization</span>
-            </a>
-          </li>
-          <li>
-            <a href="#skills" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Code className="h-5 w-5" />
-              <span>Hard Skills</span>
-            </a>
-          </li>
-          <li>
-            <a href="#HardSkills" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Code className="h-5 w-5" />
-              <span>Soft Skills</span>
-            </a>
-          </li>
-          <li>
-            <a href="#certificates" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <ShieldCheck className="h-5 w-5" />
-              <span>Certificates</span>
-            </a>
-          </li>
-          <li>
-            <a href="#projects" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <FolderTree className="h-5 w-5" />
-              <span>Projects</span>
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="flex items-center space-x-2 p-2 rounded hover:bg-blue-600">
-              <Contact2Icon className="h-5 w-5" />
-              <span>Contact Me</span>
-            </a>
-          </li>
+    <aside className="bg-secondary-900 text-secondary-100 h-screen p-6 rounded-tr-3xl shadow-2xl transition-all duration-300 ease-in-out flex flex-col overflow-y-auto">
+      <div className="mb-8 px-2">
+        <h1 className="text-2xl font-bold text-white tracking-wider">RESUME<span className="text-primary-500">.</span></h1>
+      </div>
+      <nav className="flex-1">
+        <ul className="space-y-3">
+          {[
+            { href: "#profile", icon: Home, label: "Profile" },
+            { href: "#expertise", icon: Zap, label: "Expertise" },
+            { href: "#experience", icon: Briefcase, label: "Experience" },
+            { href: "#education", icon: GraduationCap, label: "Education" },
+            { href: "#organization", icon: Users2, label: "Organization" },
+            { href: "#skills", icon: Code, label: "Hard Skills" },
+            { href: "#SoftSkills", icon: Code, label: "Soft Skills" },
+            { href: "#certificates", icon: ShieldCheck, label: "Certificates" },
+            { href: "#projects", icon: FolderTree, label: "Projects" },
+            { href: "#contact", icon: Contact2Icon, label: "Contact Me" },
+          ].map((item) => (
+            <li key={item.label}>
+              <a href={item.href} className="flex items-center space-x-3 p-3 rounded-xl transition-all duration-200 hover:bg-secondary-800 hover:text-primary-400 group">
+                <item.icon className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                <span className="font-medium">{item.label}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
+      <div className="mt-auto pt-6 border-t border-secondary-800 text-xs text-secondary-500 text-center">
+        © 2025 Resume Dashboard
+      </div>
     </aside>
   )
 }
