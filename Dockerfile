@@ -13,11 +13,16 @@ WORKDIR /app
 
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
+
+# Copy source files
 COPY . .
 
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+
+# Clean any previous builds
+RUN rm -rf .next
 
 # Build the application
 RUN npm run build

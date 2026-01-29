@@ -1,10 +1,33 @@
+# Build files
 Dockerfile
 .dockerignore
 node_modules
 npm-debug.log
 README.md
 .next
+out
+dist
+
+# Git files
 .git
 .gitignore
+
+# Environment files
+.env
 .env*.local
+
+# Editor files
 .vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PM2 files
+ecosystem.config.js
+.pm2
+
+# Logs
+logs
+*.log
