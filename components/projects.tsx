@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
-import { ExternalLink, FolderTree } from 'lucide-react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FolderTree, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ProjectModal, type Project } from "./project-modal";
 
 const projects: Project[] = [
@@ -27,7 +30,44 @@ const projects: Project[] = [
 ]
 
 export function Projects() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const sliderRef = useRef<Slider>(null);
+
+  const settings = {
+    dots: true,
+    infinite: projects.length > 3,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    afterChange: (current: number) => setCurrentSlide(current),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          infinite: projects.length > 2,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          infinite: projects.length > 1,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const goToPrev = () => {
+    sliderRef.current?.slickPrev();
+  };
+
+  const goToNext = () => {
+    sliderRef.current?.slickNext();
+  };
 
   return (
     <section
@@ -40,55 +80,54 @@ export function Projects() {
         </span>
         Projects
       </h2>
-      <div className="grid gap-6">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-secondary-100 cursor-pointer grid lg:grid-cols-2"
-            onClick={() => setSelectedProject(project)}
-          >
-            <div className="relative h-56 lg:h-full min-h-[14rem] w-full overflow-hidden bg-secondary-50">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-            </div>
-            <div className="p-6 flex flex-col gap-4">
-              <h3 className="font-bold text-xl text-secondary-900 group-hover:text-primary-600 transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-secondary-600 text-sm leading-relaxed">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100 rounded-full px-3 py-1"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-4 mt-auto">
-                {project.links.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm text-primary-600 hover:text-primary-700 font-medium"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {link.label} <ExternalLink className="w-3 h-3 ml-1" />
-                  </a>
-                ))}
+      <div className="relative px-4">
+        <Slider ref={sliderRef} {...settings}>
+          {projects.map((project) => (
+            <div key={project.id} className="px-3 pb-6">
+              <div
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-secondary-100 cursor-pointer h-full"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="relative h-64 w-full overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover object-left-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <span className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Click to view
+                    </span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-sm text-secondary-900 line-clamp-2 group-hover:text-primary-600 transition-colors min-h-[2.5rem]">
+                    {project.title}
+                  </h3>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </Slider>
+        <button
+          onClick={goToPrev}
+          className="absolute -left-2 top-1/2 transform -translate-y-1/2 bg-white text-secondary-700 hover:text-primary-600 shadow-lg rounded-full p-3 focus:outline-none transition-all duration-200 z-10 border border-secondary-100 hover:scale-110"
+          aria-label="Previous project"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute -right-2 top-1/2 transform -translate-y-1/2 bg-white text-secondary-700 hover:text-primary-600 shadow-lg rounded-full p-3 focus:outline-none transition-all duration-200 z-10 border border-secondary-100 hover:scale-110"
+          aria-label="Next project"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
       </div>
+      <p className="mt-6 text-center text-secondary-500 text-sm font-medium">
+        Project {currentSlide + 1} of {projects.length}
+      </p>
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
