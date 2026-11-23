@@ -24,10 +24,9 @@ dist
 .DS_Store
 Thumbs.db
 
-# PM2 files
-ecosystem.config.js
-.pm2
 
 # Logs
 logs
 *.log
+docker-compose.yml
+.github
